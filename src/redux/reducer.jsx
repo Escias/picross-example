@@ -16,6 +16,12 @@ const initialState = {
 		pseudo: ''
 	},
 
+	autor: [{
+		name : 'theo',
+		age : '18',
+		sexe : 'M'
+	}],
+
 	/**
 	* TodoList datas [{Object}]
 	*
@@ -33,8 +39,22 @@ const initialState = {
 			title: 'About',
 			desc: 'Connecter le composant About à Redux'
 		}
+	],
+
+
+	grille: [
+
+	 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
 	]
+
 };
+
+
 
 /**
 * Permet de vérifier si un index est présent dans un Tablleau

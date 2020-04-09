@@ -5,52 +5,68 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 
 class Home extends React.Component {
-	constructor() {
+	constructor(props) {
 		/**
 		* super() permet d'acès aux variables et aux fonctions du ou des parents.
 		* Les parents d'une class sont définis après extends.
 		*/
-		super();
+		super(props);
 
 		/**
 		* Permet de définir l'état local.
 		* L'état local modifie le render
 		*/
 		this.state = {
-			txt: ''
+			value: null,
+			grille: []
 		}
+
 	}
 
-	/**
-	* Fonction d'édition de this.state.txt
-	* this.editState
-	*/
-	editState(event) {
-		// preventDefault() empêche le rechargement de page
-		event.preventDefault();
+
+	test (event){
 		let target = event.target;
+		let x = target.dataset.x;
+		let y = target.dataset.y;
+		let grille = null;
+		if (this.state.grille.length === 0) {
+			grille = this.props.grille;
+		} else {
+			grille = this.state.grille;
+		}
+		console.log(grille);
+		grille[y][x] = 'x';
+		this.setState({ ...this.state, grille: grille });
 
-		// setState est utilisé pour modifier le state d'une class.
-		this.setState({...this.state, txt: target[0].value});
+	};
+
+
+	renderSquare( x, y) {
+		return(
+		<button key={x} data-x={x} data-y={y}
+				className="square"
+					onClick={ event => this.test(event) }
+		>
+			{this.state.grille.length > 0 && this.state.grille[y][x]}
+		</button>
+		)
 	}
+
+
 
 	render() {
-		const { profil } = this.props;
-		const { txt } = this.state;
+		const { grille } = this.props;
+
+
 		return (
 			<div>
-				<p>
-					Hello {profil.pseudo} !
-				</p><br /><br />
-				<form onSubmit={ event => this.editState(event) }>
-					<label>
-						State : <input type="text" /><br />
-					</label>
-					<label>
-						Résultat : {txt}
-					</label>
-					<button>Modifier</button>
-				</form>
+				{grille.map((line , y) => (
+					<div key={y} className="board-row">
+						{line.map((square , x) => {
+							return this.renderSquare(x, y)
+						})}
+					</div>
+				))}
 			</div>
 		);
 	}
@@ -67,7 +83,10 @@ const mapStateToProps = state => {
 		* this.props.profil
 		* state.profil est défini dans /redux/reducer.jsx
 		*/
-		profil: state.profil
+		profil: state.profil,
+		autor: state.autor,
+		grille: state.grille
+
 	};
 }
 
@@ -79,3 +98,4 @@ const mapStateToProps = state => {
 export default withRouter(connect(
 	mapStateToProps
 )(Home));
+

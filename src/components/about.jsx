@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { withRouter } from "react-router";
+import {connect} from "react-redux";
 
 class About extends React.Component {
 	constructor() {
@@ -23,11 +24,12 @@ class About extends React.Component {
 	}
 
 	render() {
+		const {  autor } = this.props;
 		return (
 			<div>
-				{this.authors.map((author , i) => (
+				{autor.map((student , i) => (
 					<div key={i}>
-						By {author.pseudo}
+						{student.name}, {student.age}, {student.sexe}<br />
 					</div>
 				))}
 			</div>
@@ -35,7 +37,24 @@ class About extends React.Component {
 	}
 }
 
+
+
+
+const mapStateToProps = state => {
+	return {
+		/**
+		 * this.props.profil
+		 * state.profil est défini dans /redux/reducer.jsx
+		 */
+		profil: state.profil,
+		autor: state.autor,
+
+	};
+}
+
+export default withRouter(connect(
+	mapStateToProps
+)(About));
 /*
 * Connecte la class au router
 */
-export default withRouter(About);
