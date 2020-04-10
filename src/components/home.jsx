@@ -23,7 +23,6 @@ class Home extends React.Component {
 
 	}
 
-
 	test (event){
 		let target = event.target;
 		let x = target.dataset.x;
@@ -35,28 +34,22 @@ class Home extends React.Component {
 			grille = this.state.grille;
 		}
 		console.log(grille);
-		grille[y][x] = 'x';
+		grille[y][x] = 'X';
 		this.setState({ ...this.state, grille: grille });
-
 	};
-
 
 	renderSquare( x, y) {
 		return(
 		<button key={x} data-x={x} data-y={y}
 				className="square"
-					onClick={ event => this.test(event) }
-		>
+					onClick={ event => this.test(event) }>
 			{this.state.grille.length > 0 && this.state.grille[y][x]}
 		</button>
 		)
 	}
 
-
-
 	render() {
 		const { grille } = this.props;
-
 
 		return (
 			<div>
@@ -83,8 +76,6 @@ const mapStateToProps = state => {
 		* this.props.profil
 		* state.profil est défini dans /redux/reducer.jsx
 		*/
-		profil: state.profil,
-		autor: state.autor,
 		grille: state.grille
 
 	};

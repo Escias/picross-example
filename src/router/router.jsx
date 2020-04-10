@@ -13,6 +13,7 @@ import Home from '../components/home';
 import TodoList from '../components/todoList';
 import Config from '../components/config';
 import About from '../components/about';
+import Other from '../components/other';
 
 class Router extends React.Component {
 	constructor() {
@@ -20,9 +21,14 @@ class Router extends React.Component {
 
 		this.routes = {
 			Home: {
-				txt: 'Accueil',
+				txt: 'Picross 1',
 				path: '/',
 				component: Home
+			},
+			Other: {
+				txt: 'Picross 2',
+				path: '/Picross2',
+				component: Other
 			},
 			TodoList: {
 				txt: 'Todo List',

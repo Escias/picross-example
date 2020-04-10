@@ -37,9 +37,6 @@ class About extends React.Component {
 	}
 }
 
-
-
-
 const mapStateToProps = state => {
 	return {
 		/**

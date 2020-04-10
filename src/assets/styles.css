@@ -200,3 +200,8 @@ button {
 	background-color: black;
 }
 
+.case{
+	border: 1px solid black;
+	height: 30px;
+	width: 30px;
+}
